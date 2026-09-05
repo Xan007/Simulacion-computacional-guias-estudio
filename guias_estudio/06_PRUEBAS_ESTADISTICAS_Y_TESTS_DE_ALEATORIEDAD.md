@@ -7,7 +7,7 @@
 Para que una secuencia de números $u_1, u_2, \dots, u_n$ generada en el computador sea válida en una simulación, debe superar dos tipos de pruebas estadísticas:
 
 $$\begin{cases}
-H_0: \text{La secuencia proviene de una distribución } U(0, 1) \text{ continua, independiente e idénticamente distribuida (i.i.d.)}. \\
+H_0: \text{La secuencia proviene de una distribución } U(0, 1) \text{ continua, independiente e idénticamente distribuida (i.i.d.)}. \
 H_1: \text{La secuencia NO es } U(0, 1) \text{ o NO es independiente}.
 \end{cases}$$
 
@@ -113,7 +113,7 @@ Una **racha** es una sucesión ininterrumpida de valores que pertenecen a la mis
 En números continuos, la muestra se divide usando la **mediana** como punto de corte:
 
 $$\begin{cases}
-+ \quad (\text{o } \oplus) & \text{si } X_i \ge \text{mediana} \\
++ \quad (\text{o } \oplus) & \text{si } X_i \ge \text{mediana} \
 - \quad (\text{o } \ominus) & \text{si } X_i < \text{mediana}
 \end{cases}$$
 
@@ -188,4 +188,3 @@ $$\begin{cases}
 | **90%** | 0.10 | $Z_{0.05} = \mathbf{1.645}$ | Rechazar si $\|Z\| > 1.645$ |
 | **95%** | 0.05 | $Z_{0.025} = \mathbf{1.960}$ | Rechazar si $\|Z\| > 1.960$ |
 | **99%** | 0.01 | $Z_{0.005} = \mathbf{2.576}$ | Rechazar si $\|Z\| > 2.576$ |
-

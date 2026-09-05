@@ -61,16 +61,16 @@ Imagina un banco con **un único cajero**.
 
 A partir de la tabla obtenemos los indicadores clave del sistema:
 
-1. **Tiempo Medio de Espera en Cola ($\\bar{W}_q$):**
+1. **Tiempo Medio de Espera en Cola ($\bar{W}_q$):**
    $$\bar{W}_q = \frac{\sum W_{q, i}}{N} = \frac{7}{6} = 1.17 \text{ minutos}$$
 
-2. **Tiempo Medio en el Sistema ($\\bar{W}$):**
+2. **Tiempo Medio en el Sistema ($\bar{W}$):**
    $$\bar{W} = \frac{\sum W_i}{N} = \frac{24}{6} = 4.00 \text{ minutos}$$
 
 3. **Porcentaje de Tiempo Ocioso del Cajero:**
    $$\% \text{Ocio} = \left( \frac{\text{Tiempo Ocioso Total}}{T_{\text{simulación}}} \right) \times 100 = \left( \frac{5}{22} \right) \times 100 = 22.73\%$$
 
-4. **Utilización del Cajero (Factor de Ocupación $\\rho$):**
+4. **Utilización del Cajero (Factor de Ocupación $\rho$):**
    $$\rho = \left( \frac{\text{Tiempo Total de Servicio}}{T_{\text{simulación}}} \right) \times 100 = \left( \frac{17}{22} \right) \times 100 = 77.27\%$$
 
 5. **Fracción de Clientes que Tuvieron que Esperar en Cola:**
@@ -107,10 +107,10 @@ $$[63.2, \, 69.7, \, 67.3, \, 64.8, \, 72.0]$$
 2. **Desviación Estándar:** $S = 3.57$ min
 3. **Error Estándar:** $\frac{S}{\sqrt{n}} = \frac{3.57}{\sqrt{5}} = 1.596$ min
 
-- **Para 95% de Confianza ($\\alpha=0.05$):** $t_{4, \, 0.975} = 2.776$
+- **Para 95% de Confianza ($\alpha=0.05$):** $t_{4, \, 0.975} = 2.776$
   $$\text{IC}_{95\%} = 67.4 \pm (2.776)(1.596) = 67.4 \pm 4.43 = [62.97, \, 71.83] \text{ min}$$
 
-- **Para 99% de Confianza ($\\alpha=0.01$):** $t_{4, \, 0.995} = 4.604$
+- **Para 99% de Confianza ($\alpha=0.01$):** $t_{4, \, 0.995} = 4.604$
   $$\text{IC}_{99\%} = 67.4 \pm (4.604)(1.596) = 67.4 \pm 7.35 = [60.05, \, 74.75] \text{ min}$$
 
 > 📌 **Propiedad clave:** A mayor nivel de confianza (99% vs 95%), el intervalo es **más ancho**. A mayor número de réplicas ($n$), el intervalo es **más estrecho y preciso**.

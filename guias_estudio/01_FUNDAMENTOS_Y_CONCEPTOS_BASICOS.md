@@ -73,7 +73,7 @@ Tiempo: t0 ──────────────► t1 ──────�
 | **Dinámica** | **Estático (Monte Carlo)** | **Dinámico (DES)** | ¿El tiempo es irrelevante (ej. calcular un área) o el sistema evoluciona temporalmente? |
 | **Azar** | **Determinista** | **Estocástico** | ¿Mismas entradas dan siempre la misma salida o intervienen variables aleatorias? |
 | **Frontera** | **Abierto** | **Cerrado** | ¿Las entidades entran y salen del sistema o una población fija circula indefinidamente? |
-| **Estabilidad** | **Estable** ($\\lambda < \\mu$) | **Inestable** ($\\lambda \ge \\mu$) | Si la tasa de llegada $\\lambda$ supera la de servicio $\\mu$, la cola crece infinitamente. |
+| **Estabilidad** | **Estable** ($\lambda < \mu$) | **Inestable** ($\lambda \ge \mu$) | Si la tasa de llegada $\lambda$ supera la de servicio $\mu$, la cola crece infinitamente. |
 
 ---
 
