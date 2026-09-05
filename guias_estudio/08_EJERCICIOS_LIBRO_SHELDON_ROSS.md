@@ -11,62 +11,33 @@ Este documento contiene los ejercicios extraídos directamente de los Capítulos
 ## Ejercicio 1 (Capítulo 3, Ejercicio 2 de Sheldon Ross)
 
 ### Enunciado idéntico del libro:
-Si $n = 3$ y $X_n = (5 X_{n-1} + 7) \pmod{200}$, determine $X_1, X_2, \dots, X_{10}$ comenzando con $X_0 = 3$.
+Si $n = 3$ y $X_n = (5 X_{n-1} + 7) \bmod 200$, determine $X_1, X_2, \dots, X_{10}$ comenzando con $X_0 = 3$.
 
 ---
 
 ### Razonamiento y Criterio de Decisión:
 
 1. **Cómo identificar el tipo de problema:**  
-   El problema presenta una relación de recurrencia modular de la forma $X_n = (a X_{n-1} + c) \pmod m$. Esto corresponde a un **Generador Congruencial Lineal Mixto (LCG)**.
+   El problema presenta una relación de recurrencia modular de la forma $X_n = (a X_{n-1} + c) \bmod m$. Esto corresponde a un **Generador Congruencial Lineal Mixto (LCG)**.
 
 2. **Cómo decidir la estrategia de resolución:**  
    Al ser un algoritmo determinista iterativo, se aplica la fórmula paso a paso. Para cada iteración $n$, se toma el valor anterior $X_{n-1}$, se multiplica por el multiplicador $a = 5$, se suma el incremento $c = 7$, y se calcula el resto de la división entera entre el módulo $m = 200$. Para convertir el estado entero $X_n$ en un número pseudoaleatorio $U_n \in [0, 1)$, se divide entre $m$:  
-   $$U_n = \frac{X_n}{m}$$
+$$U_n = \frac{X_n}{m}$$
 
 ---
 
 ### Solución Paso a Paso:
 
-- **Iteración 1 ($n = 1$):**  
-  $$X_1 = (5 \cdot X_0 + 7) \pmod{200} = (5 \cdot 3 + 7) \pmod{200} = 22 \pmod{200} = 22$$  
-  $$U_1 = \frac{22}{200} = 0.11$$
-
-- **Iteración 2 ($n = 2$):**  
-  $$X_2 = (5 \cdot 22 + 7) \pmod{200} = (110 + 7) \pmod{200} = 117 \pmod{200} = 117$$  
-  $$U_2 = \frac{117}{200} = 0.585$$
-
-- **Iteración 3 ($n = 3$):**  
-  $$X_3 = (5 \cdot 117 + 7) \pmod{200} = (585 + 7) \pmod{200} = 592 \pmod{200} = 192$$  
-  $$U_3 = \frac{192}{200} = 0.96$$
-
-- **Iteración 4 ($n = 4$):**  
-  $$X_4 = (5 \cdot 192 + 7) \pmod{200} = (960 + 7) \pmod{200} = 967 \pmod{200} = 167$$  
-  $$U_4 = \frac{167}{200} = 0.835$$
-
-- **Iteración 5 ($n = 5$):**  
-  $$X_5 = (5 \cdot 167 + 7) \pmod{200} = (835 + 7) \pmod{200} = 842 \pmod{200} = 42$$  
-  $$U_5 = \frac{42}{200} = 0.21$$
-
-- **Iteración 6 ($n = 6$):**  
-  $$X_6 = (5 \cdot 42 + 7) \pmod{200} = (210 + 7) \pmod{200} = 217 \pmod{200} = 17$$  
-  $$U_6 = \frac{17}{200} = 0.085$$
-
-- **Iteración 7 ($n = 7$):**  
-  $$X_7 = (5 \cdot 17 + 7) \pmod{200} = (85 + 7) \pmod{200} = 92 \pmod{200} = 92$$  
-  $$U_7 = \frac{92}{200} = 0.46$$
-
-- **Iteración 8 ($n = 8$):**  
-  $$X_8 = (5 \cdot 92 + 7) \pmod{200} = (460 + 7) \pmod{200} = 467 \pmod{200} = 67$$  
-  $$U_8 = \frac{67}{200} = 0.335$$
-
-- **Iteración 9 ($n = 9$):**  
-  $$X_9 = (5 \cdot 67 + 7) \pmod{200} = (335 + 7) \pmod{200} = 342 \pmod{200} = 142$$  
-  $$U_9 = \frac{142}{200} = 0.71$$
-
-- **Iteración 10 ($n = 10$):**  
-  $$X_{10} = (5 \cdot 142 + 7) \pmod{200} = (710 + 7) \pmod{200} = 717 \pmod{200} = 117$$  
-  $$U_{10} = \frac{117}{200} = 0.585$$
+- Iteración 1 ($n = 1$): $X_1 = (5 \cdot 3 + 7) \bmod 200 = 22$, luego $U_1 = \frac{22}{200} = 0.11$.
+- Iteración 2 ($n = 2$): $X_2 = (5 \cdot 22 + 7) \bmod 200 = 117$, luego $U_2 = \frac{117}{200} = 0.585$.
+- Iteración 3 ($n = 3$): $X_3 = (5 \cdot 117 + 7) \bmod 200 = 592 \bmod 200 = 192$, luego $U_3 = \frac{192}{200} = 0.96$.
+- Iteración 4 ($n = 4$): $X_4 = (5 \cdot 192 + 7) \bmod 200 = 967 \bmod 200 = 167$, luego $U_4 = \frac{167}{200} = 0.835$.
+- Iteración 5 ($n = 5$): $X_5 = (5 \cdot 167 + 7) \bmod 200 = 842 \bmod 200 = 42$, luego $U_5 = \frac{42}{200} = 0.21$.
+- Iteración 6 ($n = 6$): $X_6 = (5 \cdot 42 + 7) \bmod 200 = 217 \bmod 200 = 17$, luego $U_6 = \frac{17}{200} = 0.085$.
+- Iteración 7 ($n = 7$): $X_7 = (5 \cdot 17 + 7) \bmod 200 = 92 \bmod 200 = 92$, luego $U_7 = \frac{92}{200} = 0.46$.
+- Iteración 8 ($n = 8$): $X_8 = (5 \cdot 92 + 7) \bmod 200 = 467 \bmod 200 = 67$, luego $U_8 = \frac{67}{200} = 0.335$.
+- Iteración 9 ($n = 9$): $X_9 = (5 \cdot 67 + 7) \bmod 200 = 342 \bmod 200 = 142$, luego $U_9 = \frac{142}{200} = 0.71$.
+- Iteración 10 ($n = 10$): $X_{10} = (5 \cdot 142 + 7) \bmod 200 = 717 \bmod 200 = 117$, luego $U_{10} = \frac{117}{200} = 0.585$.
 
 ---
 
@@ -86,9 +57,9 @@ $$\int_0^1 e^{e^x} dx$$
 2. **Cómo decidir la estrategia de resolución:**  
    - Primero se identifican los límites de integración: $a = 0$ y $b = 1$.  
    - Cuando el intervalo de integración es exactamente $[0, 1]$, la integral es equivalente al valor esperado de la función $g(U)$, donde $U \sim U(0, 1)$:  
-     $$\theta = \int_0^1 g(x) dx = E[g(U)]$$  
+$$\theta = \int_0^1 g(x) dx = E[g(U)]$$
    - Por la ley de los grandes números, se generan $k$ números aleatorios independientes $U_1, U_2, \dots, U_k$ uniformemente distribuidos en $(0, 1)$, y la integral se aproxima como el promedio aritmético de las evaluaciones de la función en dichos puntos:  
-     $$\hat{\theta} = \frac{1}{k} \sum_{i=1}^k g(U_i) = \frac{1}{k} \sum_{i=1}^k e^{e^{U_i}}$$
+$$\hat{\theta} = \frac{1}{k} \sum_{i=1}^k g(U_i) = \frac{1}{k} \sum_{i=1}^k e^{e^{U_i}}$$
 
 ---
 
@@ -103,7 +74,7 @@ $$\int_0^1 e^{e^x} dx$$
      - Evaluar $y_i = e^{e^{U_i}}$.
      - Sumar $S = S + y_i$.
   4. La estimación final de la integral es:  
-     $$\hat{\theta} = \frac{S}{k}$$
+$$\hat{\theta} = \frac{S}{k}$$
 
 ---
 
@@ -111,7 +82,7 @@ $$\int_0^1 e^{e^x} dx$$
 
 ### Enunciado idéntico del libro:
 Para $U_1, U_2, \dots$ variables aleatorias uniformes en $(0, 1)$, definimos:  
-$$N = \text{Mínimo}\left\{n: \sum_{i=1}^n U_i > 1\right\}$$  
+$$N = \min\left\{n: \sum_{i=1}^n U_i > 1\right\}$$
 Es decir, $N$ es igual a la cantidad de números aleatorios que deben sumarse para exceder a 1. Estime $E[N]$ mediante simulación.
 
 ---
@@ -140,7 +111,7 @@ Es decir, $N$ es igual a la cantidad de números aleatorios que deben sumarse pa
 - **Algoritmo de estimación global:**
   1. Repetir la réplica anterior $M$ veces (por ejemplo, $M = 1\,000$ corridas), obteniendo valores $N_1, N_2, \dots, N_M$.
   2. Calcular el valor promedio:  
-     $$\hat{E}[N] = \frac{1}{M} \sum_{j=1}^M N_j$$
+$$\hat{E}[N] = \frac{1}{M} \sum_{j=1}^M N_j$$
 
 - **Resultado teórico conocido:**  
   La teoría demuestra analíticamente que $E[N] = e \approx 2.71828$. La simulación debe converger a este valor conforme aumenta $M$.
@@ -191,7 +162,7 @@ $$P(X=1) = 0.30, \quad P(X=2) = 0.20, \quad P(X=3) = 0.35, \quad P(X=4) = 0.15$$
   5. En caso contrario, hacer $X = 4$ y terminar.
 
 - **Número promedio de comparaciones:**  
-  $$1(0.35) + 2(0.30) + 3(0.20) + 3(0.15) = 0.35 + 0.60 + 0.60 + 0.45 = 2.00 \text{ comparaciones}$$  
+$$1(0.35) + 2(0.30) + 3(0.20) + 3(0.15) = 0.35 + 0.60 + 0.60 + 0.45 = 2.00 \text{ comparaciones}$$
   *(Sin ordenar, el promedio habría sido $2.35$ comparaciones).*
 
 ---
@@ -200,7 +171,7 @@ $$P(X=1) = 0.30, \quad P(X=2) = 0.20, \quad P(X=3) = 0.35, \quad P(X=4) = 0.15$$
 
 ### Enunciado idéntico del libro:
 Suponga que la variable aleatoria $X$ puede tomar cualquiera de los valores $1, 2, \dots, 10$ con probabilidades respectivas:  
-$$0.06, \; 0.06, \; 0.06, \; 0.06, \; 0.06, \; 0.15, \; 0.13, \; 0.14, \; 0.15, \; 0.13$$  
+$$0.06, \; 0.06, \; 0.06, \; 0.06, \; 0.06, \; 0.15, \; 0.13, \; 0.14, \; 0.15, \; 0.13$$
 Utilice el método de composición para dar un algoritmo que genere el valor de $X$.
 
 ---
@@ -209,7 +180,7 @@ Utilice el método de composición para dar un algoritmo que genere el valor de 
 
 1. **Cómo identificar el tipo de problema:**  
    Se pide explícitamente usar el **Método de Composición**, el cual se aplica cuando la función de masa de probabilidad $P(X=j)$ se puede descomponer como una mezcla ponderada de dos o más distribuciones más sencillas:  
-   $$P(X=j) = \alpha \cdot f_1(j) + (1 - \alpha) \cdot f_2(j)$$
+$$P(X=j) = \alpha \cdot f_1(j) + (1 - \alpha) \cdot f_2(j)$$
 
 2. **Cómo decidir la estrategia de resolución:**  
    - Se analizan las probabilidades dadas: los primeros 5 valores ($j=1,2,3,4,5$) tienen todos probabilidad constante $0.06$.  
@@ -218,7 +189,7 @@ Utilice el método de composición para dar un algoritmo que genere el valor de 
    - Por tanto, se descompone con peso $\alpha = 0.30$:  
      - Subdistribución 1 ($f_1$): Distribución uniforme discreta en $\{1, 2, 3, 4, 5\}$, donde cada número tiene probabilidad $1/5 = 0.20$. Se cumple $0.30 \times 0.20 = 0.06$.
      - Subdistribución 2 ($f_2$): Distribución discreta en $\{6, 7, 8, 9, 10\}$ con probabilidades reescaladas dividiendo entre $0.70$:  
-       $$P(X=6) = \frac{0.15}{0.70}, \quad P(X=7) = \frac{0.13}{0.70}, \quad P(X=8) = \frac{0.14}{0.70}, \quad P(X=9) = \frac{0.15}{0.70}, \quad P(X=10) = \frac{0.13}{0.70}$$
+$$P(X=6) = \frac{0.15}{0.70}, \quad P(X=7) = \frac{0.13}{0.70}, \quad P(X=8) = \frac{0.14}{0.70}, \quad P(X=9) = \frac{0.15}{0.70}, \quad P(X=10) = \frac{0.13}{0.70}$$
 
 ---
 
@@ -227,12 +198,8 @@ Utilice el método de composición para dar un algoritmo que genere el valor de 
 - **Algoritmo de Composición:**
   1. Generar un número aleatorio $U_1 \sim U(0, 1)$.
   2. **Decisión de rama:**
-     - **Si $U_1 < 0.30$ (Rama 1 - Uniforme Discreta):**  
-       Generar un segundo número aleatorio $U_2 \sim U(0, 1)$ y asignar:  
-       $$X = \lfloor 5 \cdot U_2 \rfloor + 1$$  
-       *(Esto genera los valores 1, 2, 3, 4 o 5 con igual probabilidad).*
-     - **Si $U_1 \ge 0.30$ (Rama 2 - Transformada Inversa en la segunda parte):**  
-       Generar un segundo número aleatorio $U_2 \sim U(0, 1)$ y aplicar transformada inversa discreta sobre las probabilidades reescaladas:
+     - Si $U_1 < 0.30$ (Rama 1 - Uniforme Discreta): Generar un segundo número aleatorio $U_2 \sim U(0, 1)$ y hacer $X = \lfloor 5 \cdot U_2 \rfloor + 1$.
+     - Si $U_1 \ge 0.30$ (Rama 2 - Transformada Inversa en la segunda parte): Generar un segundo número aleatorio $U_2 \sim U(0, 1)$ y aplicar transformada inversa discreta sobre las probabilidades reescaladas:
        - Si $U_2 < \frac{0.15}{0.70} \approx 0.2143 \implies X = 6$
        - Si $U_2 < \frac{0.28}{0.70} = 0.4000 \implies X = 7$
        - Si $U_2 < \frac{0.42}{0.70} = 0.6000 \implies X = 8$
@@ -256,9 +223,9 @@ Obtenga un algoritmo de simulación para esta distribución utilizando la relaci
 
 2. **Cómo decidir la estrategia de resolución:**  
    Una variable aleatoria Binomial Negativa $X \sim \text{NB}(r, p)$ representa la suma de $r$ variables aleatorias geométricas independientes $G_1, G_2, \dots, G_r$, cada una con parámetro $p$:  
-   $$X = \sum_{i=1}^r G_i$$  
+$$X = \sum_{i=1}^r G_i$$
    Dado que una variable geométrica $G_i$ se genera directamente por transformada inversa continua como:  
-   $$G_i = \left\lfloor \frac{\ln(1 - U_i)}{\ln(1 - p)} \right\rfloor + 1$$  
+$$G_i = \left\lfloor \frac{\ln(1 - U_i)}{\ln(1 - p)} \right\rfloor + 1$$
    la forma más rápida de generar $X$ es generar $r$ números uniformes $U_1, \dots, U_r$, calcular cada $G_i$ y sumarlos.
 
 ---
@@ -269,7 +236,6 @@ Obtenga un algoritmo de simulación para esta distribución utilizando la relaci
   1. Inicializar la variable acumuladora $X = 0$.
   2. Para $i = 1$ hasta $r$:
      - Generar un número aleatorio $U_i \sim U(0, 1)$.
-     - Calcular el valor de la variable geométrica $G_i$:  
-       $$G_i = \left\lfloor \frac{\ln(1 - U_i)}{\ln(1 - p)} \right\rfloor + 1$$
+     - Calcular el valor de la variable geométrica $G_i = \left\lfloor \frac{\ln(1 - U_i)}{\ln(1 - p)} \right\rfloor + 1$.
      - Sumar al total: $X = X + G_i$.
   3. Retornar $X$.

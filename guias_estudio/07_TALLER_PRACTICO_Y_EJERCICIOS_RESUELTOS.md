@@ -41,7 +41,9 @@
   - $m = 91 = 7 \times 13$.
   - Teorema de Hull-Dobell: $(a - 1) = 50$ **no es divisible por 7 ni por 13**.
 - **Consecuencia:** Su periodo es de **solo 6 números**:
-  $$\mathbf{72 \to 63 \to 59 \to 37 \to 7 \to 24} \to 72 \to 63 \dots$$
+
+$$\mathbf{72 \to 63 \to 59 \to 37 \to 7 \to 24} \to 72 \to 63 \dots$$
+
 - **Resultados ($N=250$):**
   - *K-S:* $D = 0.325 \gg 0.086 \implies$ **ROTUNDAMENTE RECHAZADO**.
   - *Rachas:* **RECHAZADO**. (Solo 6 números repitiéndose 41 veces).

@@ -38,6 +38,7 @@ Aproxima el área bajo la curva dividiendo el intervalo $[a, b]$ en $n$ subinter
 ```
 
 ### Fórmula de Trapecios Compuesta:
+
 $$\int_a^b f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(x_i) + f(b) \right]$$
 
 ### Ejemplo con $I = \int_0^2 e^{-x^2} dx$:
@@ -48,7 +49,9 @@ $$\int_a^b f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(x_i) + 
   - $f(1.0) = e^{-1.00} = 0.3679$
   - $f(1.5) = e^{-2.25} = 0.1054$
   - $f(2.0) = e^{-4.00} = 0.0183$
-  $$\text{Área} \approx \frac{0.5}{2} [1.0000 + 2(0.7788 + 0.3679 + 0.1054) + 0.0183] = 0.25 [1.0 + 2(1.2521) + 0.0183] = 0.8806$$
+
+$$\text{Área} \approx \frac{0.5}{2} [1.0000 + 2(0.7788 + 0.3679 + 0.1054) + 0.0183] = 0.25 [1.0 + 2(1.2521) + 0.0183] = 0.8806$$
+
   *(Error relativo: solo $0.16\%$).*
 
 ---
@@ -58,9 +61,11 @@ $$\int_a^b f(x) dx \approx \frac{h}{2} \left[ f(a) + 2\sum_{i=1}^{n-1} f(x_i) + 
 ### Fundamento Matemático:
 Sea $X \sim U(a, b)$ una variable aleatoria uniforme en $[a, b]$. Su función de densidad es $f(x) = \frac{1}{b-a}$.  
 La esperanza matemática de la función $g(X)$ es:
+
 $$\mathbb{E}[g(X)] = \int_a^b g(x) f(x) dx = \int_a^b g(x) \frac{1}{b-a} dx = \frac{1}{b-a} \int_a^b g(x) dx$$
 
 Despejando la integral $\theta = \int_a^b g(x) dx$:
+
 $$\theta = (b - a) \, \mathbb{E}[g(X)]$$
 
 Por la **Ley Fuerte de los Grandes Números**, estimamos la esperanza muestreando $N$ números aleatorios uniformes $U_i \sim U(0, 1)$, transformándolos a $X_i = a + (b-a)U_i$:
@@ -68,6 +73,7 @@ Por la **Ley Fuerte de los Grandes Números**, estimamos la esperanza muestreand
 $$\hat{\theta}_N = \frac{b - a}{N} \sum_{i=1}^N g(a + (b - a) U_i)$$
 
 ### Error Estándar del Estimador:
+
 $$\text{Var}(\hat{\theta}_N) = \frac{(b-a)^2 \sigma_g^2}{N} \implies \text{Error Estándar} = \frac{(b-a) S_g}{\sqrt{N}}$$
 
 > **Gran ventaja de Monte Carlo:** El error decrece como $\mathcal{O}(1/\sqrt{N})$ para cualquier número de dimensiones $d$. En integrales múltiples de dimensión 10 o 20, Monte Carlo es el **único método viable**.
@@ -97,7 +103,8 @@ Imagina un círculo de radio $r=1$ inscrito en un cuadrado de lado $L=2$ centrad
 2. Verificar si el punto cae dentro del círculo: $X_i^2 + Y_i^2 \le 1$.
 3. Contar los puntos dentro ($N_{\text{dentro}}$) tras $N$ lanzamientos.
 4. **Estimación:**
-   $$\frac{N_{\text{dentro}}}{N} \approx \frac{\text{Área Círculo}}{\text{Área Cuadrado}} = \frac{\pi}{4} \implies \hat{\pi} = 4 \times \frac{N_{\text{dentro}}}{N}$$
+
+$$\frac{N_{\text{dentro}}}{N} \approx \frac{\text{Área Círculo}}{\text{Área Cuadrado}} = \frac{\pi}{4} \implies \hat{\pi} = 4 \times \frac{N_{\text{dentro}}}{N}$$
 
 ---
 
@@ -120,9 +127,11 @@ Se lanza una aguja de longitud $L$ al azar sobre una superficie con líneas para
 - La aguja cruza una línea si: $Y \le \frac{L}{2} \sin(\theta)$.
 
 ### Probabilidad Teórica de Cruce:
+
 $$P(\text{cruce}) = \int_0^{\pi/2} \left( \int_0^{\frac{L}{2}\sin\theta} \frac{1}{D/2} dy \right) \frac{1}{\pi/2} d\theta = \frac{2L}{\pi D}$$
 
 ### Fórmula para Estimar $\pi$:
+
 $$\hat{\pi} = \frac{2 \cdot L \cdot N}{D \cdot (\text{Número de Cruces})}$$
 
 ---

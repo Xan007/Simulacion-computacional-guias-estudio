@@ -35,6 +35,7 @@ Cualquier estudio de simulación parte de una fuente básica de números uniform
 ### A. Variables Continuas
 Si $X$ tiene función de distribución acumulada continua $F(x) = P(X \le x)$, entonces la variable aleatoria $U = F(X)$ sigue una distribución uniforme $U(0, 1)$.  
 Por lo tanto:
+
 $$X = F^{-1}(U)$$
 
 ```
@@ -51,15 +52,20 @@ $$X = F^{-1}(U)$$
 - **Función de Densidad:** $f(x) = \lambda e^{-\lambda x}, \quad x \ge 0$
 - **Función Acumulada:** $F(x) = 1 - e^{-\lambda x}$
 - **Inversión Matemática:**
-  $$U = 1 - e^{-\lambda x} \implies e^{-\lambda x} = 1 - U \implies -\lambda x = \ln(1 - U)$$
-  $$X = -\frac{1}{\lambda} \ln(1 - U)$$
+
+$$U = 1 - e^{-\lambda x} \implies e^{-\lambda x} = 1 - U \implies -\lambda x = \ln(1 - U)$$
+
+$$X = -\frac{1}{\lambda} \ln(1 - U)$$
+
   *(Nota: Como $1 - U$ también es $U(0, 1)$, computacionalmente se usa indistintamente $X = -\frac{1}{\lambda} \ln(U)$).*
 
 - **Ejemplo del Material de Clase:**  
   Si la media entre llegadas es $\beta = 1/\lambda = 10$ minutos (es decir $\lambda = 0.1$) y se genera $U = 0.3067$:
-  $$X = -10 \cdot \ln(1 - 0.3067) = -10 \cdot \ln(0.6933) = -10 \cdot (-0.3662) = \mathbf{3.66 \text{ minutos}}$$
+
+$$X = -10 \cdot \ln(1 - 0.3067) = -10 \cdot \ln(0.6933) = -10 \cdot (-0.3662) = \mathbf{3.66 \text{ minutos}}$$
 
 #### 2. Distribución Uniforme Continua $U(a, b)$:
+
 $$X = a + (b - a) U$$
 
 ---
@@ -83,11 +89,14 @@ Para una variable aleatoria discreta $X$ que toma valores enteros $x_0 < x_1 < x
 ### C. Generación de Poisson (con Recursión Eficiente)
 
 La distribución de Poisson modela el número de eventos en un intervalo de tiempo (media $\lambda$):
+
 $$p_k = P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}, \quad k = 0, 1, 2, \dots$$
 
 #### Relación de Recurrencia Clave:
 Calcular factoriales $k!$ para $k$ grande desborda la memoria. Se aprovecha la relación entre términos consecutivos:
+
 $$p_0 = e^{-\lambda}$$
+
 $$p_{k+1} = \frac{\lambda}{k + 1} p_k$$
 
 #### Algoritmo de Poisson por Transformada Inversa:
@@ -113,15 +122,19 @@ Representa el número de éxitos en $n$ ensayos independientes de Bernoulli con 
 
 - **Método 1 (Suma de Bernoulli):**  
   Generar $n$ uniformes $U_1, U_2, \dots, U_n$.  
-  $$X = \sum_{i=1}^n \mathbb{I}(U_i < p)$$
+
+$$X = \sum_{i=1}^n \mathbb{I}(U_i < p)$$
+
 - **Método 2 (Transformada Inversa Recursiva):**  
-  $$p_0 = (1 - p)^n, \quad p_{k+1} = \frac{n - k}{k + 1} \frac{p}{1 - p} p_k$$
+
+$$p_0 = (1 - p)^n, \quad p_{k+1} = \frac{n - k}{k + 1} \frac{p}{1 - p} p_k$$
 
 ---
 
 ### E. Distribución Geométrica ($p$)
 
 Número de ensayos hasta el primer éxito:
+
 $$X = \left\lfloor \frac{\ln(1 - U)}{\ln(1 - p)} \right\rfloor + 1$$
 
 ---
@@ -145,7 +158,9 @@ Se utiliza cuando la función de distribución acumulada $F(x)$ no tiene inversa
 1. Se tiene la distribución objetivo $p_j$ que queremos simular.
 2. Se elige una distribución propuesta $q_j$ fácil de simular (ej. uniforme).
 3. Se calcula la **constante de dominación $c$**:
-   $$c = \max_j \left( \frac{p_j}{q_j} \right) \ge 1$$
+
+$$c = \max_j \left( \frac{p_j}{q_j} \right) \ge 1$$
+
 4. **Algoritmo:**
    - **Paso 1:** Simular un valor candidato $Y$ a partir de la distribución propuesta $q$.
    - **Paso 2:** Generar un número aleatorio uniforme $U \sim U(0, 1)$.

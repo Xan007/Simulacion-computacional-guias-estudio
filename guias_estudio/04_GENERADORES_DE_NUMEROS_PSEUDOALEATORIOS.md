@@ -64,7 +64,9 @@ Fue el primer generador algorítmico de la historia.
 Se basan en aritmética modular. Son la base de los generadores clásicos.
 
 ### A. Generador Congruencial Multiplicativo:
+
 $$X_{n+1} = (a \cdot X_n) \bmod m$$
+
 $$U_n = \frac{X_n}{m}$$
 
 - **Semilla:** $X_0 > 0$.
@@ -73,7 +75,9 @@ $$U_n = \frac{X_n}{m}$$
 - **Periodo Máximo:** Puede alcanzar como máximo $m - 1$ (si $m$ es primo y $a$ es raíz primitiva).
 
 ### B. Generador Congruencial Mixto (Lineal):
+
 $$X_{n+1} = (a \cdot X_n + c) \bmod m$$
+
 $$U_n = \frac{X_n}{m}$$
 
 - **Incremento:** $c > 0$.

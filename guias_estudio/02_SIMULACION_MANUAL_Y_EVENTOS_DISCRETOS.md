@@ -18,6 +18,7 @@ El reloj de simulación ($T_{\text{NOW}}$) lleva el control del tiempo en el mod
 
 ### Lista de Eventos Futuros (FEL - Future Event List):
 Es una lista ordenada cronológicamente con los eventos pendientes de ejecución:
+
 $$\text{FEL} = [(\text{Llegada}, t=4.2), (\text{Salida}, t=5.1), (\text{Llegada}, t=7.0), (\text{Falla}, t=9.6)]$$
 
 ### Paradigmas de Ejecución en DES:
@@ -62,22 +63,28 @@ Imagina un banco con **un único cajero**.
 A partir de la tabla obtenemos los indicadores clave del sistema:
 
 1. **Tiempo Medio de Espera en Cola ($\bar{W}_q$):**
-   $$\bar{W}_q = \frac{\sum W_{q, i}}{N} = \frac{7}{6} = 1.17 \text{ minutos}$$
+
+$$\bar{W}_q = \frac{\sum W_{q, i}}{N} = \frac{7}{6} = 1.17 \text{ minutos}$$
 
 2. **Tiempo Medio en el Sistema ($\bar{W}$):**
-   $$\bar{W} = \frac{\sum W_i}{N} = \frac{24}{6} = 4.00 \text{ minutos}$$
+
+$$\bar{W} = \frac{\sum W_i}{N} = \frac{24}{6} = 4.00 \text{ minutos}$$
 
 3. **Porcentaje de Tiempo Ocioso del Cajero:**
-   $$\% \text{Ocio} = \left( \frac{\text{Tiempo Ocioso Total}}{T_{\text{simulación}}} \right) \times 100 = \left( \frac{5}{22} \right) \times 100 = 22.73\%$$
+
+$$\% \text{Ocio} = \left( \frac{\text{Tiempo Ocioso Total}}{T_{\text{simulación}}} \right) \times 100 = \left( \frac{5}{22} \right) \times 100 = 22.73\%$$
 
 4. **Utilización del Cajero (Factor de Ocupación $\rho$):**
-   $$\rho = \left( \frac{\text{Tiempo Total de Servicio}}{T_{\text{simulación}}} \right) \times 100 = \left( \frac{17}{22} \right) \times 100 = 77.27\%$$
+
+$$\rho = \left( \frac{\text{Tiempo Total de Servicio}}{T_{\text{simulación}}} \right) \times 100 = \left( \frac{17}{22} \right) \times 100 = 77.27\%$$
 
 5. **Fracción de Clientes que Tuvieron que Esperar en Cola:**
-   $$P(\text{espera}) = \frac{\text{Número de clientes con } W_q > 0}{N} = \frac{3}{6} = 0.50 \quad (50\%)$$
+
+$$P(\text{espera}) = \frac{\text{Número de clientes con } W_q > 0}{N} = \frac{3}{6} = 0.50 \quad (50\%)$$
 
 6. **Tiempo Medio de Espera de Quienes Realmente Esperaron:**
-   $$\bar{W}_{q, \text{esperaron}} = \frac{\sum W_{q, i}}{\text{Número de clientes con } W_q > 0} = \frac{7}{3} = 2.33 \text{ minutos}$$
+
+$$\bar{W}_{q, \text{esperaron}} = \frac{\sum W_{q, i}}{\text{Número de clientes con } W_q > 0} = \frac{7}{3} = 2.33 \text{ minutos}$$
 
 ---
 
@@ -92,6 +99,7 @@ Réplica 3 (Semilla C) ───► Resultado X3
 ```
 
 ### Fórmula del Intervalo de Confianza (IC $1-\alpha$):
+
 $$\bar{X} \pm t_{n-1, \, 1-\alpha/2} \cdot \frac{S}{\sqrt{n}}$$
 
 Donde:
@@ -101,6 +109,7 @@ Donde:
 
 ### Ejemplo Numérico Real (del material de clase):
 Se ejecutaron $n = 5$ réplicas independientes del tiempo medio en cola (minutos):
+
 $$[63.2, \, 69.7, \, 67.3, \, 64.8, \, 72.0]$$
 
 1. **Media:** $\bar{X} = \frac{63.2 + 69.7 + 67.3 + 64.8 + 72.0}{5} = 67.4$ min
@@ -108,10 +117,12 @@ $$[63.2, \, 69.7, \, 67.3, \, 64.8, \, 72.0]$$
 3. **Error Estándar:** $\frac{S}{\sqrt{n}} = \frac{3.57}{\sqrt{5}} = 1.596$ min
 
 - **Para 95% de Confianza ($\alpha=0.05$):** $t_{4, \, 0.975} = 2.776$
-  $$\text{IC}_{95\%} = 67.4 \pm (2.776)(1.596) = 67.4 \pm 4.43 = [62.97, \, 71.83] \text{ min}$$
+
+$$\text{IC}_{95\%} = 67.4 \pm (2.776)(1.596) = 67.4 \pm 4.43 = [62.97, \, 71.83] \text{ min}$$
 
 - **Para 99% de Confianza ($\alpha=0.01$):** $t_{4, \, 0.995} = 4.604$
-  $$\text{IC}_{99\%} = 67.4 \pm (4.604)(1.596) = 67.4 \pm 7.35 = [60.05, \, 74.75] \text{ min}$$
+
+$$\text{IC}_{99\%} = 67.4 \pm (4.604)(1.596) = 67.4 \pm 7.35 = [60.05, \, 74.75] \text{ min}$$
 
 > **Propiedad clave:** A mayor nivel de confianza (99% vs 95%), el intervalo es **más ancho**. A mayor número de réplicas ($n$), el intervalo es **más estrecho y preciso**.
 

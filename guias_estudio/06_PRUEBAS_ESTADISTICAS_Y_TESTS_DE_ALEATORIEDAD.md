@@ -7,6 +7,7 @@
 Para que una secuencia de números $u_1, u_2, \dots, u_n$ generada en el computador sea válida en una simulación, debe superar dos tipos de pruebas estadísticas:
 
 $$H_0: \text{La secuencia proviene de una distribución } U(0, 1) \text{ continua, independiente e idénticamente distribuida (i.i.d.)}$$
+
 $$H_1: \text{La secuencia NO es } U(0, 1) \text{ o NO es independiente}$$
 
 ```
@@ -39,12 +40,19 @@ Compara la **Función de Distribución Acumulada Empírica** $F_n(x)$ de la mues
 
 ### Algoritmo Paso a Paso:
 1. Ordenar los $n$ números generados de menor a mayor:
-   $$R_{(1)} \le R_{(2)} \le \dots \le R_{(n)}$$
+
+$$R_{(1)} \le R_{(2)} \le \dots \le R_{(n)}$$
+
 2. Para cada $i = 1, 2, \dots, n$, calcular las desviaciones superior e inferior:
-   $$D^+ = \max_{1 \le i \le n} \left( \frac{i}{n} - R_{(i)} \right)$$
-   $$D^- = \max_{1 \le i \le n} \left( R_{(i)} - \frac{i-1}{n} \right)$$
+
+$$D^+ = \max_{1 \le i \le n} \left( \frac{i}{n} - R_{(i)} \right)$$
+
+$$D^- = \max_{1 \le i \le n} \left( R_{(i)} - \frac{i-1}{n} \right)$$
+
 3. **Estadístico de Prueba:**
-   $$D = \max(D^+, D^-)$$
+
+$$D = \max(D^+, D^-)$$
+
 4. **Regla de Decisión:**
    - Buscar el valor crítico $D_{\alpha, n}$ en la tabla K-S para el nivel de significancia $\alpha$ (ej. $\alpha = 0.05$).
    - Si $D > D_{\alpha, n} \implies$ **Se rechaza la hipótesis de uniformidad**.
@@ -77,9 +85,13 @@ Se utiliza para muestras más grandes ($n \ge 30$).
 1. Dividir el intervalo $(0, 1)$ en $k$ clases disjuntas de igual amplitud $\frac{1}{k}$ (regla empírica: $E_i \ge 5$).
 2. Contar la **frecuencia observada** $O_i$ de números que caen en cada clase $i$.
 3. La **frecuencia esperada** bajo uniformidad es igual para todas las clases:
-   $$E_i = \frac{n}{k}$$
+
+$$E_i = \frac{n}{k}$$
+
 4. Calcular el estadístico de contraste:
-   $$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$$
+
+$$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$$
+
 5. **Regla de Decisión:**
    - Grados de libertad: $df = k - 1$.
    - Si $\chi^2 > \chi^2_{k-1, \, 1-\alpha} \implies$ **Se rechaza la hipótesis de uniformidad**.
@@ -95,12 +107,18 @@ Verifica si existe dependencia o correlación espacial en 2 dimensiones entre n�
 1. Dividir el intervalo $(0, 1)$ en $k$ intervalos de amplitud $1/k$.
 2. Categorizar la muestra $u_1, u_2, \dots, u_n$ en enteros $Y_i \in \{1, 2, \dots, k\}$.
 3. Formar **$n/2$ pares no solapados:**
-   $$(Y_1, Y_2), \, (Y_3, Y_4), \, (Y_5, Y_6), \, \dots, \, (Y_{n-1}, Y_n)$$
+
+$$(Y_1, Y_2), \, (Y_3, Y_4), \, (Y_5, Y_6), \, \dots, \, (Y_{n-1}, Y_n)$$
+
 4. Contar la frecuencia observada $O_{ij}$ en la matriz $k \times k$.
 5. Frecuencia esperada para cada celda:
-   $$E_{ij} = \frac{n/2}{k^2} = \frac{n}{2k^2}$$
+
+$$E_{ij} = \frac{n/2}{k^2} = \frac{n}{2k^2}$$
+
 6. **Estadístico Chi-Cuadrado Bidimensional:**
-   $$T = \sum_{i=1}^k \sum_{j=1}^k \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \sim \chi^2_{k^2 - 1}$$
+
+$$T = \sum_{i=1}^k \sum_{j=1}^k \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \sim \chi^2_{k^2 - 1}$$
+
 7. **Regla de Decisión:** Rechazar independencia si $T > \chi^2_{k^2 - 1, \, 1-\alpha}$.
 
 ---
@@ -125,13 +143,16 @@ En números continuos, la muestra se divide usando la **mediana** como punto de 
 - $R =$ número total de rachas observadas.
 
 1. **Media Teórica de Rachas:**
-   $$\mu_R = \frac{2 \, n_1 \, n_2}{n} + 1$$
+
+$$\mu_R = \frac{2 \, n_1 \, n_2}{n} + 1$$
 
 2. **Varianza Teórica:**
-   $$\sigma_R^2 = \frac{2 \, n_1 \, n_2 \, (2 \, n_1 \, n_2 - n)}{n^2 (n - 1)}$$
+
+$$\sigma_R^2 = \frac{2 \, n_1 \, n_2 \, (2 \, n_1 \, n_2 - n)}{n^2 (n - 1)}$$
 
 3. **Estadístico Estandarizado (Normal Estándar):**
-   $$Z = \frac{R - \mu_R}{\sigma_R} \sim N(0, 1)$$
+
+$$Z = \frac{R - \mu_R}{\sigma_R} \sim N(0, 1)$$
 
 ### Regla de Decisión (para $\alpha = 0.05$):
 - Si $|Z| > 1.96 \implies$ **Se rechaza la hipótesis de aleatoriedad/independencia**.
