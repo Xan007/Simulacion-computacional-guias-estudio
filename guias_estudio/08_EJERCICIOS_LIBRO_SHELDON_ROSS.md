@@ -426,3 +426,102 @@ $$G_i = \left\lfloor \frac{\ln(1 - U_i)}{\ln(1 - p)} \right\rfloor + 1$$
      - Sumar al total: $X = X + G_i$.
   3. Retornar $X$.
 
+---
+
+# PARTE 3: EJERCICIOS DE PRUEBAS ESTADÍSTICAS Y ALEATORIEDAD (TEST DE RACHAS)
+
+---
+
+## Ejercicio 10 (Ejercicio Oficial del Material de Clase - Prueba de Rachas por Mediana)
+
+### Enunciado idéntico del material de clase:
+Dada la siguiente secuencia de $N = 20$ números pseudoaleatorios generados en el intervalo $(0, 1)$:
+
+$$U = [0.34, \, 0.89, \, 0.12, \, 0.76, \, 0.95, \, 0.43, \, 0.61, \, 0.18, \, 0.82, \, 0.55, \, 0.29, \, 0.91, \, 0.05, \, 0.48, \, 0.67, \, 0.73, \, 0.15, \, 0.88, \, 0.39, \, 0.52]$$
+
+Realice el **Test de Rachas (Runs Test)** basado en la mediana con un nivel de significancia $\alpha = 0.05$ para determinar si la secuencia cumple con la hipótesis de aleatoriedad e independencia.
+
+---
+
+### Razonamiento y Criterio de Decisión:
+
+1. **Cómo identificar el tipo de problema:**  
+   Se entrega una secuencia numérica de valores continuos y se solicita evaluar si los datos provienen de un proceso independiente y aleatorio (no correlacionado en el tiempo) usando el **Test de Rachas**.
+
+2. **Cómo decidir la estrategia de resolución:**  
+   - Se halla la mediana teórica de la distribución uniforme (o la mediana muestral de la secuencia). En $U(0, 1)$, la mediana es $\text{mediana} = 0.50$.
+   - Se asigna el signo $+$ si $U_i \ge 0.50$ y el signo $-$ si $U_i < 0.50$.
+   - Se cuentan las transiciones entre signos consecutivos para determinar el número total de rachas $R$.
+   - Se calcula el número de valores positivos $n_1$ y negativos $n_2$.
+   - Se evalúa la media teórica $\mu_R$, la varianza $\sigma_R^2$ y el estadístico estandarizado $Z$:
+$$\mu_R = \frac{2 n_1 n_2}{N} + 1, \quad \sigma_R^2 = \frac{2 n_1 n_2 (2 n_1 n_2 - N)}{N^2 (N - 1)}, \quad Z = \frac{R - \mu_R}{\sigma_R}$$
+   - Se compara $|Z|$ contra el valor crítico bilateral $Z_{\alpha/2} = Z_{0.025} = 1.96$:
+     - Si $|Z| \le 1.96 \implies$ **Se ACEPTA la hipótesis de aleatoriedad**.
+     - Si $|Z| > 1.96 \implies$ **Se RECHAZA la hipótesis de aleatoriedad**.
+
+---
+
+### Solución Paso a Paso:
+
+- **Paso 1: Asignar signos a la secuencia usando la mediana ($0.50$):**
+
+| $i$ | $U_i$ | Signo | $i$ | $U_i$ | Signo |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | 0.34 | **$-$** | 11 | 0.29 | **$-$** |
+| 2 | 0.89 | **$+$** | 12 | 0.91 | **$+$** |
+| 3 | 0.12 | **$-$** | 13 | 0.05 | **$-$** |
+| 4 | 0.76 | **$+$** | 14 | 0.48 | **$-$** |
+| 5 | 0.95 | **$+$** | 15 | 0.67 | **$+$** |
+| 6 | 0.43 | **$-$** | 16 | 0.73 | **$+$** |
+| 7 | 0.61 | **$+$** | 17 | 0.15 | **$-$** |
+| 8 | 0.18 | **$-$** | 18 | 0.88 | **$+$** |
+| 9 | 0.82 | **$+$** | 19 | 0.39 | **$-$** |
+| 10 | 0.55 | **$+$** | 20 | 0.52 | **$+$** |
+
+Secuencia de signos obtenida:
+$$[-], \; [+], \; [-], \; [+, +], \; [-], \; [+], \; [-], \; [+, +], \; [-], \; [+], \; [-, -], \; [+, +], \; [-], \; [+], \; [-], \; [+]$$
+
+- **Paso 2: Contar el número de observaciones y de rachas ($R$):**
+  - Número de valores positivos ($n_1$ con $+ \ge 0.50$): $n_1 = 11$
+  - Número de valores negativos ($n_2$ con $- < 0.50$): $n_2 = 9$
+  - Tamaño de muestra total $N = n_1 + n_2 = 20$.
+  - Conteo de transiciones de cambio de signo (rachas):
+    1. Racha 1: $[-]$ (elemento 1)
+    2. Racha 2: $[+]$ (elemento 2)
+    3. Racha 3: $[-]$ (elemento 3)
+    4. Racha 4: $[+, +]$ (elementos 4, 5)
+    5. Racha 5: $[-]$ (elemento 6)
+    6. Racha 6: $[+]$ (elemento 7)
+    7. Racha 7: $[-]$ (elemento 8)
+    8. Racha 8: $[+, +]$ (elementos 9, 10)
+    9. Racha 9: $[-]$ (elemento 11)
+    10. Racha 10: $[+]$ (elemento 12)
+    11. Racha 11: $[-, -]$ (elementos 13, 14)
+    12. Racha 12: $[+, +]$ (elementos 15, 16)
+    13. Racha 13: $[-]$ (elemento 17)
+    14. Racha 14: $[+]$ (elemento 18)
+    15. Racha 15: $[-]$ (elemento 19)
+    16. Racha 16: $[+]$ (elemento 20)
+  
+  Total de rachas observadas: **$R = 16$**
+
+- **Paso 3: Calcular la media teórica $\mu_R$ y la varianza $\sigma_R^2$:**
+
+$$\mu_R = \frac{2 \cdot n_1 \cdot n_2}{N} + 1 = \frac{2 \cdot 11 \cdot 9}{20} + 1 = \frac{198}{20} + 1 = 9.9 + 1 = \mathbf{10.9}$$
+
+$$\sigma_R^2 = \frac{2 \cdot n_1 \cdot n_2 \cdot (2 n_1 n_2 - N)}{N^2 (N - 1)} = \frac{198 \cdot (198 - 20)}{20^2 \cdot (20 - 1)} = \frac{198 \cdot 178}{400 \cdot 19} = \frac{35244}{7600} \approx \mathbf{4.63737}$$
+
+$$\sigma_R = \sqrt{4.63737} \approx \mathbf{2.15346}$$
+
+- **Paso 4: Calcular el estadístico estandarizado $Z$:**
+
+$$Z = \frac{R - \mu_R}{\sigma_R} = \frac{16 - 10.9}{2.15346} = \frac{5.1}{2.15346} \approx \mathbf{2.368}$$
+
+- **Paso 5: Regla de decisión para $\alpha = 0.05$:**
+  - Valor crítico bilateral para $\alpha = 0.05$: $Z_{\text{crítico}} = 1.96$.
+  - Comparación: $|Z| = 2.368 > 1.96$.
+
+- **Conclusión Final:**
+  Como $|Z| = 2.368 > 1.96$, **se RECHAZA la hipótesis nula de aleatoriedad e independencia**. El valor positivo de $Z$ ($+2.368$) indica que la secuencia tiene **demasiadas rachas** (demasiadas oscilaciones rápidas entre valores altos y bajos), lo que evidencia una falta de verdadera aleatoriedad en el generador.
+
+
